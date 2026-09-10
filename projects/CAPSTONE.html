@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gaze-based driver SA — Your Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="mark" href="../index.html">YN</a>
+    <nav>
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#studio">Studio</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <article class="case">
+    <a class="crumb" href="../index.html#work">← All work</a>
+    <header>
+      <p class="eyebrow">Capstone · QUT · 2026</p>
+      <h1>Gaze-based driver situational awareness</h1>
+      <p class="meta-row">Computer vision · knowledge graphs · automated driving</p>
+    </header>
+
+    <p>
+      Replace this paragraph with the problem in one or two sentences:
+      what a driver (or an ADS) needs to notice, and why current pipelines
+      miss context.
+    </p>
+
+    <h2>What I built</h2>
+    <p>
+      An attention-driven scene pipeline: detect relevant objects, segment
+      the urban scene, then update a dynamic knowledge graph used for
+      situational-awareness reasoning.
+    </p>
+    <ul>
+      <li>Detection with YOLOv8</li>
+      <li>Segmentation with SAM2</li>
+      <li>Vision-language descriptions (Qwen2.5-VL / Gemini)</li>
+      <li>Dynamic scene knowledge graph (DSKG) for memory and advice</li>
+    </ul>
+
+    <figure>
+      <div class="ph" style="min-height: 280px;">Architecture</div>
+      <figcaption>System diagram — add <code>../images/dskg-architecture.png</code></figcaption>
+    </figure>
+
+    <h2>How it works</h2>
+    <p>
+      Keep this short. Three beats is enough: inputs (camera / gaze),
+      perception, then the graph and the advice the system can give.
+      One figure beats two pages of method.
+    </p>
+
+    <h2>Result</h2>
+    <p>
+      State what you evaluated and what you found — even if it is qualitative.
+      “On urban clips, the graph retained X after the object left frame”
+      is more useful than a list of libraries.
+    </p>
+
+    <h2>My role</h2>
+    <p>
+      If it was a team unit, say exactly what you owned: architecture,
+      training, evaluation, writing, diagrams.
+    </p>
+
+    <div class="links-box">
+      <a class="btn" href="../files/gaze-sa.pdf">Report PDF</a>
+      <a href="https://github.com/YOURUSERNAME/REPO">Code ↗</a>
+      <a href="#">Demo video ↗</a>
+    </div>
+  </article>
+
+  <footer>
+    <p>Hosted on GitHub Pages.</p>
+  </footer>
+</body>
+</html>
