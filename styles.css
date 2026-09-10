@@ -222,6 +222,36 @@ figcaption {
 .contact p { color: var(--muted); font-size: 1.15rem; }
 .sep { margin: 0 0.55rem; color: #555; }
 
+.case {
+  max-width: 42rem;
+  padding: 4.5rem 6vw 5rem;
+}
+.case .crumb {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.case .crumb:hover { color: var(--accent); }
+.case header { margin: 1.5rem 0 2rem; }
+.case .meta-row {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0.4rem 0 0;
+}
+.case h2 {
+  margin-top: 2.2rem;
+  font-size: 1.6rem;
+}
+.case figure { margin: 1.5rem 0; }
+.links-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.2rem;
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+}
+
 footer {
   padding: 1.5rem 6vw 2.5rem;
   color: var(--muted);
