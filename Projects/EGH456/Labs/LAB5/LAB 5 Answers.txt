@@ -1,0 +1,68 @@
+TASK A:
+	Q1: 
+		Stored within AMessage:
+			ulMessageID: 32-bit unsigned integer representing task ID's (0 --> 3)
+			ulTimestamp: 32-bit unsigned integer representing timestamp
+
+	Q2: 
+		1: QueueReceiveTask1 only reads xStructQueue, whilst QueueReceiveTask2 only reads xPointerQueue
+		2: FreeRTOS queue are thread-safe as they use the FIFO queue system 
+
+	Q3: 
+		By Value: the data is stored in the queue's internal buffer whilst in the queue
+			1). entire AMessage is copied into queue's internal buffer. 
+			2). queue allocates memory for each item (xQueueCreate) 
+			3). data copied from the sender's local message in the queue's buffer (xQueueSend)
+			4). data is copied again from queue's buffer the receivers local read structure (xQueueReceive)
+		By Pointer: the pointer is stored in the queue's internal buffer but the original AMessage stays within the local senders stack memory
+			1). only AMessage pointer is copied into queue's internal buffer.
+			2). rest of the AMessage stays within the sender's local message (XQueueSend)
+			3). it receives the pointer and dereferences it to access the AMessage in the sender's local (XQueueReceive)
+	
+	Q4:
+		Pattern: 
+			Q1T0 --> Q2T1 --> Q2T0 --> Q2T2 --> Q2T3 --> Q1W0 --> Q1T0 --> Q1W0 --> Q1T1 --> Q2T0 --> Q1W0 --> Q1T2 --> Q1W0 --> Q1T3 --> Q1W0
+		Explanation: 
+			The number of messages waiting in the queue is nearly always zero, meaning no messages are waiting to be received.
+				1). The Receiver tasks have a higher priority than the sender task. 
+				As soon as a sender task add a message, the receiver task takes priority and removes message from queue.
+				2). Queue length is 4 but the tasks are being completed faster than the queue can fill.
+
+	Q5:
+		Pattern:
+			Q1T0 --> Q2T0 --> Q2T1 --> Q2T2 --> Q2T3 --> Q1W0 --> Q1T0 --> Q2T0 --> Q1W0 --> Q1T1 --> Q1W0 --> Q1T2 --> Q1W0 --> Q1T3 --> Q1W0
+		Explanation: 
+			Some messages may not be displayed
+				1). Queue can only hold 1 message
+				2). The sender task may attempt to send a message
+				but if queue is full, the message is discarded and does not attempt to send message until task is called again
+				3). The receiver task cannot process fast enough to keep up with the message being sent.
+				Messages with 5ms or no delay tend to be the problem.
+
+	Q6:			
+		1). Race Conditions or Data Corruption
+			Problem: Sender and receiver are accessing the same memory at the same time without synchronisation, leading to inconsistent data. 
+				This would occur if sender modifies message before receiver has processed the previous message.
+			Solution: use an instance for each message and ensure it is not modified until receiver processes the previous message instance.
+		2). Dangling Pointers
+			Problem: receiver task might access invalid memory, leading to unknown behaviour or crash to program.
+				This happens when the message variable (xMessage) is deallocated or tries to access memory that doesn't exist.
+			Solution: Ensure message structure remains valid for the message's lifetime.
+
+
+TASK B:
+	Q1: CODED
+	
+	Q2: CODED
+
+	Q3: CODED
+
+	Q4: CODED 
+		
+TASK C:
+	Q1: CODED
+	
+	Q2: CODED
+
+	Q3: CODED
+
