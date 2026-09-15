@@ -1,0 +1,20 @@
+# 3. Data Loading
+image_size = 128  # Reduced to lower memory usage
+batch_size = 32   # Reduced to manage compute resources
+From-Scratch Model Metrics:
+Classification Accuracy: 0.2800
+Segmentation IoU: 0.7355
+MobileNetV3Small Model Metrics:
+Classification Accuracy: 0.6300
+Segmentation IoU: 0.8008
+
+
+# 3. Data Loading
+image_size = 128  # Reduced to lower memory usage
+batch_size = 64   # Reduced to manage compute resources
+From-Scratch Model Metrics:
+Classification Accuracy: 0.2300
+Segmentation IoU: 0.7462
+MobileNetV3Small Model Metrics:
+Classification Accuracy: 0.6400
+Segmentation IoU: 0.7993
