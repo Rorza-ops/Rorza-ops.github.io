@@ -1,0 +1,37 @@
+TASK A:
+	Q1: Pattern = starts with either task, then changes between 
+		T1(0ms) --> T1(500ms) --> T2(750ms) --> T1(1000ms) --> T2(1500ms) --> T1(1500ms)repeat from beginning
+
+	Q2: Pattern = seems to be the same as the previous question, although high priority mean that task 2 always completes before task 1.
+		T2(0) --> T1(0) --> T1(500) --> T2(750) --> T1(1000) --> T2(1500) --> T1(1500) --> T1(2000) --> T2(2250) --> T1(2500) --> T2(3000) --> T1(3000)
+
+	Q3: 
+		FreeRTOS: 
+			No delay = run ASAP
+			No priority = they corrupt the messages, by printing parts of each message together
+			If priority = only High Priority Task prints
+			
+		Scheduling:
+			always ready to run
+			Scheduler switches based on preemption
+			Context switching occurs rapidly meaning mixed outputs/messages
+
+
+Task B:
+	Q1:
+		Explanation:
+			Starts as taken/unavailable
+			Task stops at 'SemaphoreTake', allowing CPU to work on other tasks.
+			When an event occurs (button pressed) the ISR give the Semaphore using 'SemaphoreGiveFromISR' thus unblocking task
+		Considered Good:
+			Resource Efficient: Blocking instead of waiting
+			Responsive: Other tasks run whilst led is blocked
+			Predictability: task only process when they are called. no unnecessary executions
+
+	Q2:
+		CODED
+
+	Q3:	
+		Design choice: Made New Task a lower priority as to allow the led tasks to be uninterrupted
+
+Task C:
