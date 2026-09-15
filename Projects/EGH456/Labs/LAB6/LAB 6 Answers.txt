@@ -1,0 +1,90 @@
+TASK A:
+	Q1:
+		high priority task critical section runtime: 0.094 or 0.095 seconds
+	
+	Q2:
+		Task sharing Semaphore:
+			highPriorityTask
+			lowPriorityTask
+		Task pre-empting the Low-Priority (LP) Task:
+			Medium-Priority (MP) Task pre-empts the LP Task while the MP Task holds the semaphore.
+			Reason:
+				1). LP takes the semaphore first with no delays (tskIDLE_PRIORITY + 1)
+				2). While LP task is in critical section, the MP task becomes ready after 100ms delay.
+				3). Since MP task has higher priority, it pre-empts the LP task, even though the LP task has the semaphore.
+				4). MP task delays the LP task completion of its critical section, thus priority inversion.
+			
+	Q3:
+		[P1 (High)] 	|-----------------------------------------------------> [P1] |-----------------------------------------------------> [P1] |----->
+		[P2 (Medium)] 	|---------------------------------------> [P2] |-------> [P2] |-------> [P2] |-------> [P2] |-------> [P2] |-------> [P2] |-------> [P2] |----->
+		[P3 (Low)] 	[P3] |-------> [P3] |-------> [P3] |-------> [P3] |-------> [P3] |-------> [P3] |-------> [P3] |-------> [P3] |-------> [P3] |----->
+
+           	 t=0       t=100      t=110      t=200      t=300      t=400      t=500    t=510    t=595      t=600     t=700    t=1095   t=1190
+                  | (Medium) | (Medium) | (Medium) | (Medium) | (Medium) | (Medium) | (Low)  | (High) | (Medium) | (Medium) | (High) | (High)
+                  | (Ready)  | (Done)   | (Runs)   | (Runs)   | (Runs)   | (Runs)   | (Done) | (Done) | (Runs)   | (Runs)   | (Runs) | (Done)
+                  | (Ctx Sw) | (Ctx Sw) |          |          |          | (Ctx Sw) | (Ctx Sw) | (Ctx Sw) |          |          | (Ctx Sw) |
+		(P1 = Critical Section, 95 ms each
+		(P2 = Runs every 100 ms)
+		(P3 = Critical Section, Semaphore Held)
+
+	Q4: 
+		Task at Risk: High-Priority (HP) risks missing critical deadline.
+		How:
+			1). HP task is delayed by the LP task holding the semaphore.
+			2). when LP task is pre-empted by MP task, the LP tasks critical section is delayed
+			3). This delays the semaphore release, blocking the HP task longer than usual.
+
+		
+TASK B:
+	Q1:
+		Time dependent: NO
+		Why: 
+			1). Still takes 0.095 seconds for the task to complete. 
+			2). However, wait time does change due to the extended medium task and priority inversion
+	
+	Q2?: 
+		Observed Output:
+			1). HP critical section still runs at 0.095 seconds
+			2). MP task doesn't pre-empt LP task during its critical section.
+			Meaning HP starts its critical section sooner.
+		Mutex Priority Inheritance:
+			1). When LP hold mutex and HP tries to take mutex, LP is temporarily raised to same priority as HP
+			2). MP can no longer pre-empt LP as LP now has a higher priority.
+			3). LP completes its critical section without interruptions from MP
+
+	Q3:
+		HP critical section Time: Same (Priority Inheritance does not effect computational time only wait time)
+			Binary: 0.095 seconds
+			Mutex: 0.095 seconds
+		Order of Completion: Changed (Binary version creates a Priority Inversion, whilst Mutex prevents this from happening
+			Binary: LP --> MP --> LP --> HP
+			Mutex: LP --> HP --> MP
+
+	Q4: 
+		Output:
+			Low priority task in critical section (start), priority: 1
+			Running medium priority task 
+			Running high priority task 
+			Running medium priority task 
+			Running medium priority task 
+			Low priority task in critical section (after delay), priority: 3
+			Low priority task leaving the critical section
+			High priority task in critical section 
+			High priority task leaving the critical section 
+			High priority critical section took 95 ticks
+			High priority critical section time: 0.095 seconds
+			Low priority task after critical section, priority: 1
+			Low priority task before critical section, priority: 1
+		Explanation:
+			Before: LP is 1
+			During: LP is raised to 3, due to HP attempting to take Mutex
+			After: LP lowers back down to 1
+		Task Priority Inherited From:
+			Task: HP
+			Reason: Priority Inheritance raises priority of mutex holder to priority of the highest priority task waiting for Mutex.
+			MP is not included as it does not attempt to take the Mutex.
+
+	Q5:
+		Mutex: MP task does not pre-empt the LP task, thus not affecting HP task due to Priority Inheritance
+		Semaphore: MP task pre-empts LP task, causing HP task to be delayed due to Priority Inversion
+
