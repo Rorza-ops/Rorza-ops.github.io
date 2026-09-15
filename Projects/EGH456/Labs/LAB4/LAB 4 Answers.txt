@@ -1,0 +1,63 @@
+TASK A:
+	Q1: 
+		Device Number: I2C0_BASE
+		GPIO Port: Port B
+		Microcontroller Pins: PB2 and PB3
+	
+	Q2: 
+		Range Number Field configuration: RN[3:0] = bits 15-12
+			RN3 = bit 15
+			RN2 = bit 14
+			RN1 = bit 13
+			RN0 = bit 12
+		conversion time: 800ms
+
+	Q3: 
+		Byte received 1st: Low = data[0]
+		Why: Correct order = proper values
+			Incorrect = corrupt bit fields
+	
+	Q4:
+		Method: Compare Manufacturer and Device ID's using sensorOpt3001Test
+		Registers: 
+			REG_MANUFACTURER_ID 0x7E
+			REG_DEVICE_ID 0x7F
+
+TASK B:
+	Q1: CODED
+	
+	Q2: CODED
+
+	Q3: 
+		MODIFICATION:
+			i2cOptDrivers.h = Setup interrupt/semaphore driven functions and handle interrupts
+				Added i2cOptDriverInit(void) = initialises the semaphore 
+				Added I2C0IntHandler(void) = ensures operation completion is handled and unblocking task
+			i2cOptDriver.c = allows task to wait for other operations to complete without polling
+				Modified read/write = removed loops that caused pooling. loops were replaced with semaphores
+				
+			
+		HOW IT HELPS:
+			System Responsiveness
+				Non-blocking: suspends and waits for other tasks
+				Reduced latency for other task: Only use CPU time when necessary
+				Better handling: One task for IC2, one for UART
+			System Efficiency
+				efficient Power usage: won't use extra as 
+			
+	
+	Q4: CODED
+		
+TASK C:
+	Q1: SHOW THEM
+
+TASK D:
+	Q1: 
+	
+	Q2: 
+
+	Q3: Why high limit = 1000: Normal day light is usually between 1000 and 10000
+	
+	Q4:
+	
+	Q5:
