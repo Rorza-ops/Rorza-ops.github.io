@@ -1,0 +1,63 @@
+TASK A).
+	1).
+		Function: READ/WRITES bits to Hardware Register
+		x: Address of hardware register
+		b: Position of bit within hardware to modify/check
+
+	2).
+		Processor handles the interrupts and their trigger
+
+	3).
+		timer interrupt trigger = TimeLoadSet
+		time between events = SysCtlClockFreqSet
+	
+	4). 
+		Higher-Priority Interrupt
+	
+	5).
+		coded
+
+
+TASK B).
+	1).
+		Type of Interrupts: Software & Hardware
+		Hardware: GPIO
+		Software: HWREG
+		triggers: Both trigger when changed
+		handle: both are handled by changing values within registers
+
+	2).
+		Tail-chaining: Allows processor to move from one handler to another without saving and restoring in between interrupts. 
+		This allows for a faster response time.
+
+	3).
+		GPIO-B goes straight to front of the active interrupts.
+
+TASK C).
+	1).
+		Function: Monitor to determine status of a program/microcontroller. 
+		Works by feeding a 'watchdog' everytime a loop is completed. 
+		If not fed the system would be considered bugged, runaway or crashed.
+		Real-World failure: if a primary program/system fails and the watchdog is not fed, the processor would switch to a backup system or reset.
+
+	2).
+		coded
+
+	3).
+		coded
+
+TASK D).
+	1).
+		CODED
+
+	2).
+		coded
+
+	3).
+		coded
+
+	4).
+		coded
+	
+		
+	
