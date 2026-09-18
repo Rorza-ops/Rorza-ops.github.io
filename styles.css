@@ -65,8 +65,8 @@ a:hover { color: var(--accent); }
   display: block;
   padding: 0;
   border: 1px solid var(--line);
-  width: 3.25rem;
-  height: 3.25rem;
+  width: 6rem;
+  height: 6rem;
   overflow: hidden;
   flex-shrink: 0;
 }
