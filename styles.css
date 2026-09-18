@@ -52,7 +52,7 @@ a:hover { color: var(--accent); }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem 6vw;
+  padding: 0.85rem 6vw;
   border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
@@ -65,8 +65,8 @@ a:hover { color: var(--accent); }
   display: block;
   padding: 0;
   border: 1px solid var(--line);
-  width: 2.35rem;
-  height: 2.35rem;
+  width: 3.25rem;
+  height: 3.25rem;
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -75,7 +75,7 @@ a:hover { color: var(--accent); }
   height: 100%;
   object-fit: cover;
   display: block;
-}      
+}     
 
 nav { display: flex; gap: 1.25rem; }
 nav a { text-decoration: none; color: var(--muted); font-size: 0.92rem; }
