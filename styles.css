@@ -155,6 +155,18 @@ code { font-size: 0.9em; color: var(--accent); }
   gap: 1rem;
 }
 
+.capstone-cert {
+  margin: 1.2rem 0 0;
+  max-width: 36rem;
+}
+.capstone-cert img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
 .project-meta {
   display: flex;
   justify-content: space-between;
