@@ -157,7 +157,8 @@ code { font-size: 0.9em; color: var(--accent); }
 
 .capstone-cert {
   margin: 1.2rem 0 0;
-  max-width: 36rem;
+  width: min(100%, 28rem);
+  max-width: 100%;
 }
 .capstone-cert img {
   width: 100%;
@@ -165,6 +166,14 @@ code { font-size: 0.9em; color: var(--accent); }
   display: block;
   border: 1px solid var(--line);
   background: #fff;
+}
+
+@media (max-width: 860px) {
+  .capstone-cert { width: min(100%, 22rem); }
+}
+
+@media (max-width: 520px) {
+  .capstone-cert { width: 100%; }
 }
 
 .project-meta {
