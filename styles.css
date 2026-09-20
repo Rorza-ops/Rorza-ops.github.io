@@ -208,28 +208,7 @@ code { font-size: 0.9em; color: var(--accent); }
   font-size: 0.78rem;
   color: var(--muted);
 }
-.reading {
-  margin: 1.4rem 0 0;
-  display: grid;
-  grid-template-columns: 5.5rem 1fr;
-  gap: 0.85rem;
-  align-items: center;
-}
-.reading img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border: 1px solid var(--line);
-  background: #111;
-}
-.reading-label {
-  display: block;
-  color: var(--muted);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.2rem;
-}
+
 
 .project-links { display: flex; gap: 1rem; }
 
@@ -274,8 +253,37 @@ figcaption {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 2.5rem;
+  grid-template-columns: 1.4fr 1fr 10.5rem;
+  gap: 2rem;
+  align-items: start;
+}
+
+.reading {
+  margin: 0;
+}
+.reading img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line);
+  background: #111;
+}
+.reading-label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0.45rem 0 0.2rem;
+}
+
+@media (max-width: 860px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .reading {
+    max-width: 10.5rem;
+  }
 }
 
 .facts { list-style: none; padding: 0; margin: 0; }
